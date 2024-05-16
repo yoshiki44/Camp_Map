@@ -8,12 +8,11 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if flash[:notice] %>
-      <p>Notice: <%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:alert] %>
-      <p>Alert: <%= flash[:alert] %></p>
-    <% end %>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %>">
+        <%= value %>
+      </div>
+<% end %>
 
     <ul>
       <% if current_user %>
